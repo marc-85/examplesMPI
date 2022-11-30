@@ -1,3 +1,7 @@
+/*
+* Example created by Marc Bolinches for the purpose of illustrating MPI operations
+*/
+
 #include <mpi.h>
 #include <iostream>
 #include <string>
