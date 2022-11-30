@@ -27,6 +27,19 @@ int main(int narg, char **argv)
   MPI_Comm_size(MPI_COMM_WORLD, &worldSize);
 
   // Read arguments
+  if(narg<3)
+  {
+    if(rank==0) cerr << "Wrong number of arguments" << endl;
+    if(rank==0)
+    {
+      cout << "Use this programs as follows: mpirun -n Nproc ./vec_operations.p arraySize operation" << endl;
+      cout << " Nproc is the number of MPI processes" << endl;
+      cout << " arraySize is size of the parallel arrays" << endl;
+      cout << " operarion is an integer that corresponds with the operation to be made" << endl;
+    }
+    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Abort(MPI_COMM_WORLD, -1);
+  }else
   {
     N           = stoi(argv[1]);
     myOperation = static_cast<OPERATION>(stoi(argv[2]));
@@ -79,7 +92,7 @@ int main(int narg, char **argv)
   time = MPI_Wtime() - time;
 
   // MPI_Barrier(MPI_COMM_WORLD);
-  if(rank==0) cout << "Result parallel: " << result << " time: " << time << endl;
+  if(rank==0) cout << "Result parallel: " << result << " time: " << time << " s " << endl;
 
   // unify vector
   // 1st - send all vectors to process 0
@@ -118,7 +131,7 @@ int main(int narg, char **argv)
     }
 
     time = MPI_Wtime() -time;
-    cout << "Result serial: " << serialResult << " time: " << time << endl;
+    cout << "Result serial: " << serialResult << " time: " << time << " s " << endl;
 
     delete[] unifiedVector;
   }
