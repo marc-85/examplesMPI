@@ -17,9 +17,9 @@ int main(int narg, char **argv)
   // read imput
   if( narg < 2)
   {
-    cout<< "Wrong number of arguments. Use as follows: " << endl;
-    cout<< "    mpirun -n 2 pingpong.p arrayLength " << endl;
-    cout<< "where " << std::endl;
+    cout << "Wrong number of arguments. Use as follows: " << endl;
+    cout << "    mpirun -n 2 pingpong.p arrayLength " << endl;
+    cout << "where " << std::endl;
     cout << "  arrayLength is the length of the array to be used" << endl;
     return 1;
   }else 
@@ -50,7 +50,7 @@ int main(int narg, char **argv)
 
   time = time / double(repeat);
 
-  if(rank==0) cout << sizeof(float)*Narray/time / 1e6 << " GBytes/sec" << endl;
+  if(rank==0) cout << 2.*double(sizeof(float)*Narray)/time / 1e6 << " GBytes/sec" << endl;
 
   delete[] A;
 
