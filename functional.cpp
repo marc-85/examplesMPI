@@ -51,7 +51,6 @@ int main(int argc, char **argv)
     {
       srand(0);
       for(int n = 0; n < Narray; n++) A[n] = double(rand() % 100) * 2. - 100.;
-      //for(int n = 0; n < Narray; n++) cout << A[n] << endl;
 
       // send the array to process 1 and 2
       MPI_Bcast(A,Narray, MPI_FLOAT, 0, MPI_COMM_WORLD);
